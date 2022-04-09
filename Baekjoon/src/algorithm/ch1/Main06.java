@@ -1,16 +1,16 @@
 package algorithm.ch1;
 
 
-// 2588¹ø °ö¼À ÀÏÀÇÀÚ¸®, ½ÊÀÇÀÚ¸®, ¹éÀÇÀÚ¸® ÇÏÇÏÇÏ
+// 2588ë²ˆ ê³±ì…ˆ ì¼ì˜ìë¦¬, ì‹­ì˜ìë¦¬, ë°±ì˜ìë¦¬
 import java.util.Scanner;
 class Main06 {
 	public static void main(String[] args) {
 		 Scanner sc = new Scanner(System.in);
 		 int A = sc.nextInt();
 		 int B = sc.nextInt();
-		 System.out.println( A*(B%10) );		//A x ÀÏÀÇÀÚ¸®
-		 System.out.println( A*((B/10)%10) );	//A x ½ÊÀÇÀÚ¸®
-		 System.out.println( A*(B/100) );		//A x ¹éÀÇÀÚ¸®
+		 System.out.println( A*(B%10) );		//A x ì¼ì˜ìë¦¬
+		 System.out.println( A*((B/10)%10) );	//A x ì‹­ì˜ìë¦¬
+		 System.out.println( A*(B/100) );		//A x ë°±ì˜ìë¦¬
 		 System.out.println( A*B );
 	}
 }
