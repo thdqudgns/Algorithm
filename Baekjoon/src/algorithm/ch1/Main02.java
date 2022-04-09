@@ -1,10 +1,10 @@
 package algorithm.ch1;
 
 
-//Scanner·Î Å°º¸µå·Î ÀÔ·Â¹ŞÀ» ÁØºñ¸¦ ÇÏ°í, º¯¼ö¿¡ ÀúÀåÇÑ ÈÄ »çÄ¢¿¬»êÀÚ·Î °è»êÇÑ´Ù
+//Scannerë¡œ í‚¤ë³´ë“œë¡œ ì…ë ¥ë°›ì„ ì¤€ë¹„ë¥¼ í•˜ê³ , ë³€ìˆ˜ì— ì €ì¥í•œ í›„ ì‚¬ì¹™ì—°ì‚°ìë¡œ ê³„ì‚°í•œë‹¤
 import java.util.Scanner;
 
-// 1000¹ø A+B
+// 1000ë²ˆ A+B
 class Main02 {
 	public static void main(String[] args) {
 		 Scanner sc = new Scanner(System.in);
@@ -19,7 +19,7 @@ class Main02 {
 
 }
 
-// 1001¹ø A-B
+// 1001ë²ˆ A-B
 //class Main02 {
 //	public static void main(String[] args) {
 //		Scanner sc = new Scanner(System.in);
@@ -31,7 +31,7 @@ class Main02 {
 //	}
 //}
 
-// 10998¹ø AxB
+// 10998ë²ˆ AxB
 //class Main02 {
 //	public static void main(String[] args) {
 //		Scanner sc = new Scanner(System.in);
@@ -43,7 +43,7 @@ class Main02 {
 //	}
 //}
 
-// 1008¹ø A/B - ¼Ò¼öÁ¡µµ ³ª¿Àµµ·Ï ½Ç¼ö·Î Çüº¯È¯ ÇØ¾ßÇÑ´Ù
+// 1008ë²ˆ A/B - ì†Œìˆ˜ì ë„ ë‚˜ì˜¤ë„ë¡ ì‹¤ìˆ˜ë¡œ í˜•ë³€í™˜ í•´ì•¼í•œë‹¤
 //class Main02 {
 //	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
@@ -55,7 +55,7 @@ class Main02 {
 //	}
 //}
 
-// 10869¹ø »çÄ¢¿¬»ê
+// 10869ë²ˆ ì‚¬ì¹™ì—°ì‚°
 //class Main02 {
 //	public static void main(String[] args) {
 //		Scanner sc = new Scanner(System.in);
