@@ -32,8 +32,7 @@ class Main06 {
 //		if( 180 <= sum && sum < 240 ) System.out.println( (H+3) + " " + (sum-180) );
 		// 23 48 +25 -> 0 13
 		
-		if( hourSum < 24 ) System.out.println( hourSum +" " + minute );
-		if( hourSum >= 24 ) System.out.println( hourSum%24 + " " + minute );
+		System.out.println( hourSum%24 + " " + minute );
 		
 	}
 }
