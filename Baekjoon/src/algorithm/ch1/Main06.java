@@ -1,7 +1,7 @@
 package algorithm.ch1;
 
 
-// 2588번 곱셈
+// 2588번 곱셈 일의자리, 십의자리, 백의자리
 import java.util.Scanner;
 class Main06 {
 	public static void main(String[] args) {
