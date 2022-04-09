@@ -1,34 +1,34 @@
 package algorithm.ch1;
 
 
-// 10926¹ø ??!
+// 10926ë²ˆ ??!
 import java.util.Scanner;
 
-//Ã¹¹øÂ° Ç®ÀÌ: ÀÔ·Â¹ŞÀº id°¡ joonas¿Í µ¿ÀÏÇÏ¸é µÚ¿¡ ??!¸¦ Ãâ·ÂÇÏµµ·Ï ÇÔ -> Æ²¸²
+// ì²«ë²ˆì§¸ í’€ì´: ì…ë ¥ë°›ì€ idê°€ joonasì™€ ë™ì¼í•˜ë©´ ë’¤ì— ??!ë¥¼ ì¶œë ¥í•˜ë„ë¡ í•¨ -> í‹€ë¦¼
 //class Main03 {
 //	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
-//		 System.out.print(">> ¾ÆÀÌµğ ÀÔ·Â: ");	//¿©±â°¡ ¹®Á¦ÀÓ
+//		 System.out.print(">> ì•„ì´ë”” ì…ë ¥: ");	//ì—¬ê¸°ê°€ ë¬¸ì œì„
 //		 String A = sc.nextLine();
 //		 
-//		 if(A.equals( "joonas" ) )	//²À joonasÀÏ ÇÊ¿ä ¾øÀ½. ±×³É ÀÔ·Â¹ŞÀº °ª µÚ¿¡ ??!¸¸ ºÙÀÌ¸é µÊ
+//		 if(A.equals( "joonas" ) )	//ê¼­ joonasì¼ í•„ìš” ì—†ìŒ. ê·¸ëƒ¥ ì…ë ¥ë°›ì€ ê°’ ë’¤ì— ??!ë§Œ ë¶™ì´ë©´ ë¨
 //			 System.out.println( A + "??!" );
 //	}
 //}
 
-//µÎ¹øÂ° Ç®ÀÌ: ÀÔ·Â¹ŞÀº idµÚ¿¡ ??!¸¦ ºÙÀÓ -> Æ²¸²
+//ë‘ë²ˆì§¸ í’€ì´: ì…ë ¥ë°›ì€ idë’¤ì— ??!ë¥¼ ë¶™ì„ -> í‹€ë¦¼
 //class Main03 {
 //	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
-//		 System.out.print(">> ¾ÆÀÌµğ ÀÔ·Â: "); //¿©±â°¡ ¹®Á¦ÀÓ
+//		 System.out.print(">> ì•„ì´ë”” ì…ë ¥: "); //ì—¬ê¸°ê°€ ë¬¸ì œì„
 //		 String A = sc.nextLine();
-//		 System.out.println( A + "??!" );	//ÀÔ·Â¹ŞÀÚ¸¶ÀÚ ??!¸¦ ºÙÀÌ°Ô ¼öÁ¤
+//		 System.out.println( A + "??!" );	//ì…ë ¥ë°›ìë§ˆì ??!ë¥¼ ë¶™ì´ê²Œ ìˆ˜ì •
 //	}
 //}
 //
 
-//¼¼¹øÂ° Ç®ÀÌ: ÀÔ·Â¹ŞÀ» ¶§ ">> ¾ÆÀÌµğ ÀÔ·Â: "¸¦ Áö¿ì°í, ÀÔ·Â¹ŞÀÚ¸¶ÀÚ ??!¸¦ ºÙ¿©¼­ Ãâ·Â -> Á¤´ä!!
-// ÀÔ·Â¹ŞÀ» ¶§ ¹®ÀÚ°¡ ÀÖÀ¸¸é ¾ÈµÇ´Â ¹®Á¦¿´´Ù.
+//ì„¸ë²ˆì§¸ í’€ì´: ì…ë ¥ë°›ì„ ë•Œ ">> ì•„ì´ë”” ì…ë ¥: "ë¥¼ ì§€ìš°ê³ , ì…ë ¥ë°›ìë§ˆì ??!ë¥¼ ë¶™ì—¬ì„œ ì¶œë ¥ -> ì •ë‹µ!!
+//ì…ë ¥ë°›ì„ ë•Œ ë¬¸ìê°€ ìˆìœ¼ë©´ ì•ˆë˜ëŠ” ë¬¸ì œì˜€ë‹¤.
 class Main03 {
 	public static void main(String[] args) {
 		 Scanner sc = new Scanner(System.in);
