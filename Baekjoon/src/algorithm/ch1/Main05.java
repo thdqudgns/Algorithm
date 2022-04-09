@@ -1,7 +1,7 @@
 package algorithm.ch1;
 
 
-// 10430¹ø ³ª¸ÓÁö
+// 10430ë²ˆ ë‚˜ë¨¸ì§€
 import java.util.Scanner;
 class Main05 {
 	public static void main(String[] args) {
