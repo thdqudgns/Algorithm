@@ -1,9 +1,9 @@
 package algorithm.ch1;
 
-//10172¹ø °³
+//10172ë²ˆ ê°œ
 class Main01 {
 
-	// \¿Í "¸¦ Ãâ·ÂÇÏ±â À§ÇØ¼­´Â \¸¦ ¾Õ¿¡ ºÙ¿©Áà¾ß ÇÑ´Ù
+	// \ì™€ "ë¥¼ ì¶œë ¥í•˜ê¸° ìœ„í•´ì„œëŠ” \ë¥¼ ì•ì— ë¶™ì—¬ì¤˜ì•¼ í•œë‹¤
 	
 	public static void main(String[] args) {
 		System.out.println("|\\_/|");
