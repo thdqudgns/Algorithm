@@ -1,11 +1,12 @@
-import math
-n = list(str(math.factorial(int(input()))))
-# print(n)
-zero_cnt = 0
-if len(n) == 1: print(0)
-for i in range(len(n)-1, 0, -1):
-    if int(n[i]) == 0:
-        zero_cnt += 1
-    else:
-        print(zero_cnt)
-        break
+n = int(input())
+r=1
+x=0
+
+for i in range(n):
+  r *= (i+1)
+
+for i in str(r)[::-1]:
+  if i!="0":
+    print(x)
+    break
+  x += 1
