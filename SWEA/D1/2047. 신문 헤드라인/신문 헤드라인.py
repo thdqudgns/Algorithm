@@ -1,2 +1,1 @@
-T = input()
-print(T.upper())
+print(input().upper())
