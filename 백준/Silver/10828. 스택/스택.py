@@ -25,7 +25,7 @@ def play(com, num):
 N = int(sys.stdin.readline())
 stack = []
 for _ in range(N):
-    arr = list(map(str, sys.stdin.readline().rstrip().split(' ')))
+    arr = list(map(str, sys.stdin.readline().strip().split(' ')))
     com = arr[0]
     num = 0
     if len(arr) > 1:
