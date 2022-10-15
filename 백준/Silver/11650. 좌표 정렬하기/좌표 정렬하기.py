@@ -1,10 +1,10 @@
 import sys
 input = sys.stdin.readline
 N = int(input())
-arr = [[0 for _ in range(2)] for _ in range(N)]
-# print(arr)
+arr = []
 for i in range(N):
-    arr[i] = list(map(int, input().rstrip().split()))
+    x, y = map(int, input().rstrip().split())
+    arr.append([x, y])
 
-arr = sorted(arr, key=lambda x: (x[0],x[1]))
+arr = sorted(arr, key=lambda x: (x[0], x[1]))
 [print(*arr[i]) for i in range(N)]
