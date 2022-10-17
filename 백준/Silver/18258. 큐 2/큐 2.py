@@ -1,11 +1,11 @@
 from collections import deque
 import sys
 n = int(sys.stdin.readline())
-q = deque([])
+q = deque()
 for i in range(n):
     arr = sys.stdin.readline().rstrip().split()
     if arr[0] == 'push':
-        q.append(arr[1])
+        q.append(int(arr[1]))
     elif arr[0] == 'pop':
         if q:
             print(q.popleft())
