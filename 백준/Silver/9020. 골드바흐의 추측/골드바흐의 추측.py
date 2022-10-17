@@ -4,7 +4,8 @@
 # 약수 중 더 작은 a를 찾았다면 짝이 되는 b는 자연스럽게 찾을 수 있기 때문이다.
 from math import sqrt
 num = []
-
+import sys
+input = sys.stdin.readline
 # 소수 먼저 저장한다.
 for i in range(2, 10001):
     cnt = 0  # 소수의 개수 확인
