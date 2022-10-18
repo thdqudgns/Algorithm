@@ -1,26 +1,19 @@
-from math import factorial
+n, m = map(int, input().split())
 
-N, M = map(int, input().split())
-
-def countNum(num, args):
+# 0의 개수를 구하는 것은 10의 개수를 구하는 것이고,
+# 10의 개수는 2*5의 개수인데, 팩토리얼에서는 2가 5보다 항상 많으므로
+# 5의 개수만 세어주면 된다.
+# 팩토리얼의 5의 개수: num을 5로 나눈 몫을 더하면서 계속 나눔
+def countNum(num, power):
     cnt = 0
     while num:
-        num //= args
-        cnt += num    # 몫의 수만큼 들어있으므로
+        num = num // power  # 5가 다른 수로 바뀌면, 그 수의 개수를 센다.
+        cnt += num
     return cnt
 
-five = countNum(N, 5) - countNum(M, 5) - countNum(N-M, 5)
-two = countNum(N, 2) - countNum(M, 2) - countNum(N-M, 2)
+# nCm = n! // m! * (n-m)!
+# 5^a // 5^b * 5^c 에서 5의 개수는 5^(a-b-c)
 
+five = countNum(n,5) - countNum(m,5) - countNum(n-m,5)
+two = countNum(n,2) - countNum(m,2) - countNum(n-m,2)
 print(min(five,two))
-
-# num = factorial(n)//(factorial(m)*factorial(n-m))
-# print(num)
-# num = str(num)
-# cnt = 0
-# for i in range(len(num)-1,-1,-1):
-#     if num[i] == '0':
-#         cnt += 1
-#     else:
-#         break
-# print(cnt)
