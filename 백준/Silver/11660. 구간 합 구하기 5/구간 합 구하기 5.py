@@ -1,4 +1,5 @@
-# https://velog.io/@yoonkeem/BOJ-2559%EB%B2%88-%EC%88%98%EC%97%B4-%ED%8C%8C%EC%9D%B4%EC%8D%AC
+# https://velog.io/@ready2start/Python-%EB%B0%B1%EC%A4%80-11660-%EA%B5%AC%EA%B0%84-%ED%95%A9-%EA%B5%AC%ED%95%98%EA%B8%B0-5
+# https://castlerain.tistory.com/m/100
 import sys
 
 N, M = map(int, sys.stdin.readline().split())
