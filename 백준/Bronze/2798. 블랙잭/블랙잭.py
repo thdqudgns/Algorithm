@@ -1,4 +1,3 @@
-# https://pacific-ocean.tistory.com/m/207
 import sys
 
 n, m = map(int, sys.stdin.readline().split())
