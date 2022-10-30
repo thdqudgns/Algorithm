@@ -1,19 +1,10 @@
 for i in range(1, 10+1):
     N = int(input())
-    arr = []
+    arr = [list(map(str, input())) for _ in range(8)]
     arr2 = [[0 for _ in range(8)] for _ in range(8)]
-    arr.append(list(map(str, input())))
-    arr.append(list(map(str, input())))
-    arr.append(list(map(str, input())))
-    arr.append(list(map(str, input())))
-    arr.append(list(map(str, input())))
-    arr.append(list(map(str, input())))
-    arr.append(list(map(str, input())))
-    arr.append(list(map(str, input())))
     for a in range(8):
         for b in range(8):
             arr2[a][b] = arr[b][a]
-    # print(arr2)
     cnt = 0
     for x in range(8):
         for y in range(8):
