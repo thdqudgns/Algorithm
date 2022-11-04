@@ -13,4 +13,4 @@ for i in range(1, T+1):
         result = week[w]
     except:
         result = -1
-    print(f'#{i} {week[w]}')
+    print(f'#{i} {result}')
