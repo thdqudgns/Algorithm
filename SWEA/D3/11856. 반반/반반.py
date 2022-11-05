@@ -1,13 +1,18 @@
-from collections import Counter
 T = int(input())
 for tc in range(1, T+1):
     s = input()
-    a = s[0]
-    b = s[1]
-    c = s[2]
-    d = s[3]
-    count = Counter([a,b,c,d])
+    alpha = []
+    check = dict()
+    for w in s:
+        if w not in alpha:
+            alpha.append(w)
+    for w in s:
+        if w not in check:
+            check[w] = 1
+            continue
+        if w in check:
+            check[w] += 1
     result = 'No'
-    if len(count) == 2 and count[a] == 2 and count[b] == 2 and count[c] == 2:
+    if len(alpha) == 2 and check[alpha[0]] == 2 and check[alpha[1]] == 2:
         result = 'Yes'
     print(f'#{tc} {result}')
