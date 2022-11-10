@@ -1,19 +1,29 @@
-for _ in range(10):
-    i=int(input())
-    m=[[*map(str,input())]for _ in range(100)]
-    z=[*map(list,zip(*m))]
-    a=1
-    for j in range(100):
-        t=a+1
-        while t-a<3:
-            for k in range(101-t):
-                r=m[j][k:k+t]
-                c=z[j][k:k+t]
-                p=1
-                s=1
-                for q in range(t//2):
-                    if r[q]!=r[t-1-q]:p=0
-                    if c[q]!=c[t-1-q]:s=0
-                if p==1 or s==1:a=t
-            t+=1
-    print(f'#{i} {a}')
+T = 10
+for tc in range(1, T + 1):
+    N = int(input())
+    words = []
+    for _ in range(100):  # 100줄에 걸쳐서 데이터를 입력받음
+        words.append(list(input()))
+    trans_words = list(map(list, zip(*words)))  # 2차원 배열 뒤집기
+    length = 1  # 최소 가로 길이 1
+
+    # 가로 탐색
+    for i in range(100):  # 0번째 줄부터 100번째 줄까지 탐색
+        for j in range(100):  # 0번째 숫자부터 100번째 숫자까지 탐색
+            for k in range(99, -1, -1):  # 긴 길이부터 탐색
+                if words[i][j:k + 1] == words[i][j:k + 1][::-1]:
+                    if length < k - j + 1:
+                        length = k - j + 1
+                        break
+                    break
+    # 세로 탐색
+    for i in range(100):  # 0번째 줄부터 100번째 줄까지 탐색
+        for j in range(100):  # 0번째 숫자부터 100번째 숫자까지 탐색
+            for k in range(99, -1, -1):  # 긴 길이부터 탐색
+                if trans_words[i][j:k + 1] == trans_words[i][j:k + 1][::-1]:
+                    if length < k - j + 1:
+                        length = k - j + 1
+                        break
+                    break
+
+    print("#{} {}".format(tc, length))
