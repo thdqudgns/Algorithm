@@ -1,32 +1,35 @@
 T = int(input())
-for test_case in range(1,T+1):
-  N,M = map(int,input().split())
-  #N*N , M은단어길이
-  arr = [list(map(int,input().split())) for _ in range(N)]
-  # 1번 가로에 있는지 확인
-  result = 0
-  for i in range(N):
-    cnt = 0
-    for j in range(N):
-      if arr[i][j]==1:
-        cnt+=1
-      else:
-        if cnt==M:
-            result+=1
-        cnt = 0
-    if cnt==M:
-      result+=1
-  #세로에 있는지 확인
-  arr90 = list(zip(*arr[::-1]))
-  for i in range(N):
-    cnt = 0
-    for j in range(N):
-      if arr90[i][j]==1:
-        cnt+=1
-      else:
-        if cnt==M:
-            result+=1
-        cnt = 0
-    if cnt==M:
-      result+=1
-  print('#{} {}'.format(test_case,result))
+ 
+for test_case in range(1, T + 1):
+    N, K = map(int, input().split())
+    puzzle = []
+    result = 0
+     
+    for i in range(1, N+1):
+        puzzle.append(list(map(int, input().split())))
+     
+    # 가로
+    for n in range(N):
+        count = 0
+        for m in range(N):
+            if puzzle[n][m] == 1:
+                count += 1
+            if puzzle[n][m] == 0 or m == N-1: # 0을 만나거나 마지막 열일 경우
+                if count == K: # 단어가 들어갈 수 있는 자리면
+                    result += 1
+                if puzzle[n][m] == 0:
+                    count = 0
+    # 세로
+    for n in range(N):
+        count = 0
+        for m in range(N):
+            if puzzle[m][n] == 1:
+                count += 1
+            if puzzle[m][n] == 0 or m == N-1: # 0을 만나거나 마지막 열일 경우
+                if count == K: # 단어가 들어갈 수 있는 자리면
+                    result += 1
+                if puzzle[m][n] == 0:
+                    count = 0
+                 
+    print('#%d %d'%(test_case,result))
+             
