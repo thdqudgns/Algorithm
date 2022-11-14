@@ -1,15 +1,12 @@
-for tc in range(1, int(input())+1):
-    n = int(input())
-    num = 0
-    s = input()
-    s = s.replace(' ', '')
-    while n > len(s):
-        s += input()
-        s = s.replace(' ', '')
-    s = s.replace(' ', '')
-
-    while True:
-        if str(num) not in s:
+T=int(input())
+for tc in range(1,T+1):
+    N=int(input())
+    arr=list(input().split())
+    while N>len(arr):
+        arr+=list(input().split())
+    arr=''.join(arr)
+   
+    for i in range(1000):
+        if str(i) not in arr:
             break
-        num += 1
-    print(f'#{tc} {num}')
+    print(f'#{tc} {i}')
