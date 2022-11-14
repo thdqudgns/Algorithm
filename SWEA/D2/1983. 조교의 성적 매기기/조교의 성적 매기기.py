@@ -10,7 +10,7 @@ for tc in range(1, int(input())+1):
     # 점수 입력받고 index와 함께 정렬
     for i in range(n):
         a, b, c = map(int, input().split())
-        arr.append([(a*35//100 + b*45//100 + c*20//100), i])
+        arr.append([(a*35/100 + b*45/100 + c*20/100), i])
     arr2 = sorted(arr, key=lambda x: -x[0])
     
     # 정렬된 배열에 평점 부여
