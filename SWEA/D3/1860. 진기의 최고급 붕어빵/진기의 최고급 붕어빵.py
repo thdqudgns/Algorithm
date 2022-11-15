@@ -9,27 +9,20 @@
 
 # 기다리는 시간이 없이 붕어빵을 제공할 수 있으면 “Possible”을, 아니라면 “Impossible”을 출력한다.
 
-for tc in range(1, int(input())+1):
+for t in range(1, int(input()) + 1):
     N, M, K = map(int, input().split())
-    result = 'Possible'
-    arr = sorted(map(int, input().split()))
+    arr = list(map(int, input().split()))
+    arr.sort()
 
-    # 기준은 시간이다. 1초 부터 마지막 손님의 도착 시간까지
-    bread = 0
-    for i in range(max(arr)+1):
-        # M초가 지날 때마다 빵이 추가된다.
-        if i % M == 0 and i != 0:
-            bread += K
+    result = "Possible"
+    for i in range(N):
+        # (붕어빵 생산 수)*(손님의 도착시간 // 붕어빵 제작시간) - (손님 수)
+        # (한 횟수 당 붕어빵 생산 수)*(손님의 도착시간에 붕어빵을 생산할 수 있는 횟수) - (손님 수)
+        # 손님의 도착시간 내에 만들 수 있는 붕어빵의 개수 - 붕어빵을 줘야 하는 손님 수
+        carpa = K * (arr[i] // M) - (i + 1)
 
-        # 손님이 도착하면 빵이 사라진다.
-        for customer in arr:
-            # i초에 손님이 도착했다면 빵을 뺀다.
-            if customer == i:
-                bread -= 1
+        # 생산한 붕어빵의 수보다 붕어빵을 줘야 하는 손님의 수가 많다면 Impossible이다.
+        if carpa < 0:
+            result = "Impossible"
 
-        if bread < 0:
-            result = 'Impossible'
-            break
-
-    print(f'#{tc} {result}')
-
+    print(f"#{t} {result}")
