@@ -1,24 +1,26 @@
-import sys
-input = sys.stdin.readline
+# n, m 을 입력 받는다
+n, m = map(int, input().split())
 
-N, M = map(int, input().rstrip().split())
-A = [[0 for _ in range(M)] for _ in range(N)]   # 열쪽을 []로 묶어 줘야 한다.
-B = [[0 for _ in range(M)] for _ in range(N)]   # 따로 생성해줘야 한다.
-answer = [[0 for _ in range(M)] for _ in range(N)]
-# print(A)
-# print(B)
+# n, m 크기의 행렬을 두 개 만들어 0으로 채운다
+A = [[0 for i in range(m)] for j in range(n)]
+B = [[0 for i in range(m)] for j in range(n)]
+C = [[0 for i in range(m)] for j in range(n)]
 
-for i in range(N):
-    A[i] = list(map(int, input().rstrip().split()))
+# 첫번째 행렬 A를 입력받는다
+for i in range(n):
+    A[i] = list(map(int, input().split()))
+    # print(A[i])
 
-for i in range(N):
-    B[i] = list(map(int, input().rstrip().split()))
+# 두번째 행렬 B를 입력받는다.
+for i in range(n):
+    B[i] = list(map(int, input().split()))
+    # print(B[i])
 
-# print(A)
-# print(B)
+# 더한다.
+for i in range(n):
+    for j in range(m):
+        C[i][j] = A[i][j] + B[i][j]
 
-for i in range(N):
-    for j in range(M):
-        answer[i][j] = A[i][j] + B[i][j]
-
-[print(*i) for i in answer]
+# 출력한다.
+for i in range(n):
+    print(*C[i])
