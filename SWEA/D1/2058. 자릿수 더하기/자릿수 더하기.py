@@ -1,5 +1,5 @@
-N = input()
-sum = 0
-for i in N:
-    sum += int(i)
-print(sum)
+a = input()
+result = 0
+for i in a:
+    result += int(i)
+print(result)
