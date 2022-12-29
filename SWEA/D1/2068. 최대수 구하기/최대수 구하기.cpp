@@ -1,4 +1,5 @@
 #include<iostream>
+#include<algorithm>
  
 using namespace std;
  
@@ -14,18 +15,15 @@ int main(int argc, char** argv)
     */
     for(test_case = 1; test_case <= T; ++test_case)
     {
-        int answer = 0;
-         
-        // 가장 큰 값이 들어오면 바꿔주는 방식
+        int a[10]; 
+        // 배열을 정렬해주는 방식
         for(int i = 0; i<10; i++){
-            int tmp;
-            cin >> tmp;
-            if (tmp>answer) {
-                answer = tmp;
-            }
+            cin >> a[i];
         } 
          
-        cout << '#' << test_case << " " << answer << '\n';
+        sort(a, a+10);
+         
+        cout << '#' << test_case << " " << a[9] << '\n';
  
  
     }
