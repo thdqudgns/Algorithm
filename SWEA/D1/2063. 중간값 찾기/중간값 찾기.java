@@ -1,29 +1,23 @@
-import java.util.Scanner;
-import java.io.FileInputStream;
-import java.util.*;
- 
-class Solution
+#include<iostream>
+# include<algorithm>
+
+using namespace std;
+
+int main(int argc, char** argv)
 {
-    public static void main(String args[]) throws Exception
-    {
-         
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int index = N/2;
-        //sc.nextLine();
-         
-        ArrayList<Integer> a = new ArrayList();
-         
-        for (int i = N; N>0; N--) {
-            int tmp = sc.nextInt();
-            a.add(tmp);
-        }
-         
-        Collections.sort(a);
-         
-        // N/2 로 하면 안나오고, index에 N/2를 저장하고 출력해야만 제대로 출력된다.
-        // int 데이터 타입으로 확실하게 정해줘야 하나보다.
-        System.out.println(a.get(index));
-         
+	int N;
+    cin >> N;
+    
+    int score[N];
+    
+    for(int i=0; i < N; i++){
+    	cin >> score[i];	// 배열을 위에서 선언하고, for문에서 하나씩 넣어줄 수 있다.
     }
+    
+    // C++에서 정렬을 하기 위해서는 # include<algorithm> 를 선언해주어야 한다.
+    sort(score, score+N);
+    
+    cout << score[N/2];
+    
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
 }
