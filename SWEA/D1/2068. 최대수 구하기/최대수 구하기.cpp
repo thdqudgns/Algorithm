@@ -9,18 +9,15 @@ int main(int argc, char** argv)
      
     cin>>T;
      
-    /*
-       여러 개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
-    */
     for(test_case = 1; test_case <= T; ++test_case)
     {
-        int input, max = 0;
-        // 가장 큰 값이 들어오면 바꿔주는 방식
-        for (int i = 0; i<10; i++) {
-            cin >> input;
-            if (input>max) max = input;
+        int N, max = 0;
+        
+        for (int i = 0; i<10; i++) 
+        {
+            cin >> N;
+            if (N > max) max = N;
         } 
-         
         cout << '#' << test_case << ' ' << max << endl;
 
     }
