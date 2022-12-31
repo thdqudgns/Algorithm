@@ -5,7 +5,7 @@ for _ in range(T):
     score_input = list(map(int, input().split()))
     for s in score_input:
         score_cnt[s] += 1
-	
+     
     score_cnt.reverse()
     ans = score_cnt.index(max(score_cnt))
     print(f'#{test_case} {100-ans}')
