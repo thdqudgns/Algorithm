@@ -1,23 +1,24 @@
-for tc in range(1, 11):
-    N = int(input())
+# 테스트케이스 10 고정, 100x100 배열 고정
+for _ in range(10):
+    t = int(input())
     arr = [list(map(int, input().split())) for _ in range(100)]
-    max = 0
-    diagonalSum = 0
+    maxA = 0
+    maxB = 0
+    maxC = 0
+     
+    # 행, 열, 대각선의 합
     for i in range(100):
-        # 행
-        if sum(arr[i]) > max:
-            max = sum(arr[i])
-        
-        columSum = 0
+        sumA, sumB, sumC = 0, 0, 0
         for j in range(100):
-            columSum += arr[j][i]
-            if i == j:
-                diagonalSum += arr[i][j]
-        # 열
-        if columSum > max:
-            max = columSum
-    # 대각선
-    if diagonalSum > max:
-        max = diagonalSum
-
-    print(f'#{tc} {max}')
+            sumA += arr[i][j]
+            sumB += arr[j][i]
+            if i == 0:
+                sumC += arr[j][j]
+        if sumA > maxA: maxA = sumA
+        if sumB > maxB: maxB = sumB
+        if sumC > maxC: maxC = sumC
+     
+    # 비교
+    result = max(maxA, maxB, maxC)
+     
+    print(f'#{t} {result}')
