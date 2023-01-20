@@ -9,17 +9,19 @@ public class Main {
 		if (b == 0) 
 			return a;
 		else
-			return gcd(b, a%b);
+			return gcd(b, a % b);
 	}
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
+		
 		int a = Integer.parseInt(st.nextToken());
 		int b = Integer.parseInt(st.nextToken());
 		
 		final int GCD = gcd(a, b);
-		final int LCM = a*b/GCD;
+		final int LCM = a * b / GCD;
+		
 		System.out.println(GCD);
 		System.out.println(LCM);
 	}
