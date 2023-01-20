@@ -10,18 +10,13 @@ public class Main {
 		final int start = Integer.parseInt(st.nextToken());
 		final int end = Integer.parseInt(st.nextToken());
 		
-		for (int i = start; i <= end; i++) {
-			boolean sosu = true;
-			// i가 소수면 출력한다.
-			if (i < 2) continue;
-			// 1부터 i의 제곱근까지 나눠지는 수가 있으면 소수가 아니다.
-			for (int j = 2; j * j <= i; j++) {
-				if (i % j == 0) {
-					sosu = false;
-					break;
-				}
+		boolean[] sosu = new boolean[end+1];
+		
+		for (int i = 2; i <= end; i++) {
+			if (!sosu[i] && i >= start) System.out.println(i);
+			for (int j = i; j <= end; j += i) {
+				sosu[j] = true;
 			}
-			if (sosu) System.out.println(i);
 		}
 		
 	}
