@@ -8,13 +8,20 @@ public class Main {
 	public static boolean checkTriangle(int a, int b, int c) {
 		// 피타고라스의 정리를 사용하려면 빗변이 a, b, c 중 무엇인지 알아야 한다.
 		if (a > b && a > c) {
-			if (a * a == b * b + c * c) return true;
+			if (pythagoreanTheorem(a, b, c)) return true;
 		} else if (b > a && b > c) {
-			if (b * b == a * a + c * c) return true;
+			if (pythagoreanTheorem(b, a, c)) return true;
 		} else if (c > a && c > b) {
-			if (c * c == a * a + b * b) return true;
+			if (pythagoreanTheorem(c, a, b)) return true;
 		}
 		
+		return false;
+	}
+	
+	public static boolean pythagoreanTheorem(int x, int y, int z) {
+		if (x * x == y * y + z * z) {
+			return true;
+		}
 		return false;
 	}
 	
@@ -23,13 +30,13 @@ public class Main {
 		
 		while (true) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			final int x = Integer.parseInt(st.nextToken());
-			final int y = Integer.parseInt(st.nextToken());
-			final int z = Integer.parseInt(st.nextToken());
+			final int a = Integer.parseInt(st.nextToken());
+			final int b = Integer.parseInt(st.nextToken());
+			final int c = Integer.parseInt(st.nextToken());
 			
-			if (x == 0 && y == 0 && z == 0) return;
+			if (a == 0 && b == 0 && c == 0) return;
 			
-			if (checkTriangle(x, y, z)) {
+			if (checkTriangle(a, b, c)) {
 				System.out.println("right");
 			} else {
 				System.out.println("wrong");
