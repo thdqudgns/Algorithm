@@ -37,6 +37,10 @@ public class Main {
 			memberList.add(new Member(age, name, order));
 		}
 		
+		br.close(); // 닫아줘야 데이터를 잘 전송한다고 했다.
+		
+		/*
+		 **** 익명클래스를 이용해서 정렬하기 - Comparator를 상속받은 어떤 클래스를 익명화 함 ****
 		Collections.sort(memberList, new Comparator<Member>() {
 			@Override
 			public int compare(Member o1, Member o2) {
@@ -47,10 +51,22 @@ public class Main {
 				}
 			}
 		});
+		 */
 		
-		for (Member b : memberList) {
-			System.out.println(b.age + " " + b.name);
+		// 2. 람다식을 이용해 간단하게 표현하기
+		Collections.sort(memberList, (o1, o2) -> {
+				if (o1.age != o2.age) {	return o1.age - o2.age;	} // 나이가 다르면 나이순
+				else { return o1.order - o2.order; }	// 나이가 같으면 들어온 순서대로
+		});
+		
+		// 3. forEach와 속도 향상을 위해 StringBuilder 사용하기
+		/*
+		for (Member m : memberList) {
+			sb.append(m.age).append(" ").append(m.name).append('\n');
 		}
+		*/
 		
+		memberList.forEach(m -> sb.append(m.age).append(" ").append(m.name).append('\n'));
+		System.out.print(sb);
 	}
 }
