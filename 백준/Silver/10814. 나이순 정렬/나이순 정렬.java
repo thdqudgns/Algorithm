@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,9 +24,9 @@ class Member {
 
 public class Main {
 	
-	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int N = Integer.parseInt(br.readLine());
 		List<Member> memberList = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();
@@ -59,14 +61,19 @@ public class Main {
 				else { return o1.order - o2.order; }	// 나이가 같으면 들어온 순서대로
 		});
 		
-		// 3. forEach와 속도 향상을 위해 StringBuilder 사용하기
+		// 3. forEach와 StringBuilder 사용하기
 		/*
 		for (Member m : memberList) {
 			sb.append(m.age).append(" ").append(m.name).append('\n');
 		}
 		*/
-		
+		// forEach()와 람다식을 사용하며 간단하게 코드 작성함
 		memberList.forEach(m -> sb.append(m.age).append(" ").append(m.name).append('\n'));
-		System.out.print(sb);
+        
+        //4. bw를 사용하면서 시간을 더 줄였다.
+		bw.write(sb.toString());
+		
+		bw.flush();
+		bw.close();
 	}
 }
