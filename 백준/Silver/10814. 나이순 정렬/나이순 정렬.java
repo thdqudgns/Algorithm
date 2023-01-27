@@ -24,6 +24,7 @@ class Member {
 
 public class Main {
 	
+	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -57,8 +58,10 @@ public class Main {
 		
 		// 2. 람다식을 이용해 간단하게 표현하기
 		Collections.sort(memberList, (o1, o2) -> {
-				if (o1.age != o2.age) {	return o1.age - o2.age;	} // 나이가 다르면 나이순
-				else { return o1.order - o2.order; }	// 나이가 같으면 들어온 순서대로
+				if (o1.age != o2.age) 
+					return o1.age - o2.age;	 // 나이가 다르면 나이순
+				else 
+					return o1.order - o2.order; 	// 나이가 같으면 들어온 순서대로
 		});
 		
 		// 3. forEach와 StringBuilder 사용하기
@@ -67,10 +70,8 @@ public class Main {
 			sb.append(m.age).append(" ").append(m.name).append('\n');
 		}
 		*/
-		// forEach()와 람다식을 사용하며 간단하게 코드 작성함
+		
 		memberList.forEach(m -> sb.append(m.age).append(" ").append(m.name).append('\n'));
-        
-        //4. bw를 사용하면서 시간을 더 줄였다.
 		bw.write(sb.toString());
 		
 		bw.flush();
