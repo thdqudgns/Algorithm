@@ -14,16 +14,13 @@ public class Main {
 		 */
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
-		long[] r = new long[n];
-		r[0] = 1;
-		for (int i = 1; i < n; i++) {
-			r[i] = r[i - 1] * 31;
-		}
+		long r = 1;
 		String str = br.readLine();
 		long sum = 0L;
 		int M = 1234567891;
 		for (int i = 0; i < n; i++) {
-			sum += (str.charAt(i) - 96) * r[i];
+			sum += ((str.charAt(i) - 96) * r)%M;
+			r *= 31;
 		}
 		System.out.println(sum % M);
 	}
