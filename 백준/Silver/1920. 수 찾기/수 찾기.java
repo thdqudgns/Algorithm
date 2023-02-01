@@ -56,8 +56,7 @@ public class Main {
 				start = mid + 1;
 			}
 		}
-		
-		return 0;
+        return 0;
 		
 	}
 }
