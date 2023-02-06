@@ -53,9 +53,11 @@ public class Main {
 	
 	private static void foundBoard(String[][] board, int i, int j) {
 		// 8 * 8 만큼 순회하면서 BW가 아닌 개수를 세고, cnt 보다 작으면 최신화한다.
+
+		// B로 시작할 때 - 짝수행의 짝수번째와 홀수행의 홀수번째가 W면 tmpB + 1
 		if (board[i][j].equals("B")) {
 			int tmpB = 0;	// BW가 아닌 개수를 셈 - B로 시작할 때
-			int tmpW = 0;	// BW가 아닌 개수를 셈 - B로 시작할 때
+			int tmpW = 0;	// BW가 아닌 개수를 셈 - W로 시작할 때
 			int xx = 0;
 			int yy = 0;
 			for (int x = i; x < i + 8; x++) {
@@ -85,7 +87,7 @@ public class Main {
 		}
 		// W로 시작할 때 - 짝수행의 짝수번째와 홀수행의 홀수번째가 B면 tmpW + 1
 		if (board[i][j].equals("W")) {
-			int tmpB = 0;	// BW가 아닌 개수를 셈 - W로 시작할 때
+			int tmpB = 0;	// BW가 아닌 개수를 셈 - B로 시작할 때
 			int tmpW = 0;	// BW가 아닌 개수를 셈 - W로 시작할 때
 			int xx = 0;
 			int yy = 0;
