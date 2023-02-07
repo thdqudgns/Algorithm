@@ -1,33 +1,35 @@
-import java.io.*;
-import java.util.*;
+import java.util.Scanner;
 
 public class Solution {
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int[] board = new int[101];
-		StringBuilder sb = new StringBuilder();
-		for (int t = 1; t <= 10; t++) {
-
-			int dump = Integer.parseInt(br.readLine());
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			// 입력받기
-			for (int i = 1; i < 101; i++) {
-					board[i] = Integer.parseInt(st.nextToken());
+	static int[] arr;
+	static int cnt;
+	static Scanner sc = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		for(int tc=1;tc<=10;++tc) {
+			arr = new int[101];
+			cnt = sc.nextInt();
+			
+			int high = 0, low = 987654321;
+			
+			for(int i=0;i<100;++i) {
+				int input = sc.nextInt();
+				arr[input]++;
+				high = Math.max(high, input);
+				low = Math.min(low, input);
 			}
 			
-			//정렬하기
-			Arrays.sort(board);
-			
-			//dump 횟수만큼 숫자 +- 작업하기
-			while(dump > 0) {
-				dump--;
-				board[100]--; 
-				board[1]++;
-				//정렬하기
-				Arrays.sort(board);
+			for(int i=0;i<cnt;++i) {
+				if(high >= low) {
+					arr[high]--;
+					arr[high-1]++;
+					arr[low]--;
+					arr[low+1]++;
+					while(arr[high] == 0) high--;
+					while(arr[low]==0) low++;
+				}
 			}
-			sb.append("#").append(t).append(" ").append(board[100] - board[1]).append('\n');
+			System.out.println("#" + tc + " " + (high-low));
 		}
-		System.out.println(sb);
 	}
 }
