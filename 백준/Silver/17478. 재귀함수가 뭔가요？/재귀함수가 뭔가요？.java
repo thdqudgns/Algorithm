@@ -1,18 +1,22 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		System.out.println("어느 한 컴퓨터공학과 학생이 유명한 교수님을 찾아가 물었다."); 
-		System.out.println(recursion(n, 0));
+	static int N;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		N = Integer.parseInt(br.readLine());
+		System.out.println("어느 한 컴퓨터공학과 학생이 유명한 교수님을 찾아가 물었다.");
+		System.out.println(recur(N, 0));
 	}
 
-	private static String recursion(int num, int cnt) {
-		if (num == 0) 
+	private static String recur(int num, int cnt) {
+		if (num == 0) {
 			return  bar(cnt) + "\"재귀함수가 뭔가요?\"\n" + bar(cnt) + "\"재귀함수는 자기 자신을 호출하는 함수라네\"\n" + bar(cnt) + "라고 답변하였지.\n";
+		}
 		print(cnt);
-		return recursion(num-1, cnt+1) + bar(cnt) + "라고 답변하였지.\n";
+		return recur(num-1, cnt+1) + bar(cnt) + "라고 답변하였지.\n";
 	}
 
 	private static void print(int cnt) {
