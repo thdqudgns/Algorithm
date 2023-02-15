@@ -6,19 +6,14 @@ public class Solution {
 		StringBuilder sb = new StringBuilder();
 		int T = Integer.parseInt(sc.nextLine());
 		for (int t = 1; t <= T; t++) {
-			int cnt = 0;
 			String s = sc.nextLine();
-			String o = "";
-			for (int i = 0; i < s.length(); i++) {
-				o += "0";
-			}
-			cnt = count(s, o);
+			int cnt = count(s);
 			sb.append("#"+t+" "+cnt+"\n");
 		}
 		System.out.println(sb);
 	}
 
-	private static int count(String s, String o) {
+	private static int count(String s) {
 		int cnt = 0;
 		char tmp = '0';
 		for (int i = 0; i < s.length(); i++) {
