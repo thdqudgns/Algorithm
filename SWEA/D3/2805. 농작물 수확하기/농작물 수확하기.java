@@ -1,36 +1,46 @@
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Solution {
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		//System.setIn(new FileInputStream("data/input2805.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int T = Integer.parseInt(br.readLine());
-		
-		for (int t = 0; t < T; t++) {	// test_case
+		StringBuilder sb = new StringBuilder();
+		// test_case
+		for (int t = 1; t <= T; t++) {
 			int N = Integer.parseInt(br.readLine());
-			int[][] farm = new int[N][N];
+			int[][] map = new int[N][N];
 			for (int i = 0; i < N; i++) {
-				char[] tmp = br.readLine().toCharArray();
+				String s = br.readLine();
 				for (int j = 0; j < N; j++) {
-					farm[i][j] = tmp[j] - '0';
+					map[i][j] = s.charAt(j) - '0';
 				}
+			} // 입력 끝
+			
+			// 5 -> 위) 0, 1, 2 || 아래) 3, 4
+			int sum = 0;	// 농작물 수확
+			int s = N/2, e = N/2; // 시작점, 종료점
+			for (int i = 0; i <= N/2; i++) { // 0 1 2
+				for (int j = s; j <= e; j++) {
+					sum += map[i][j];
+				}
+				s--;
+				e++;
 			}
 			
-			int r = N / 2;
-			int c = N / 2;
-			int sum = 0;
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < N; j++) {
-					if (Math.abs(r - i) + Math.abs(c - j) <= N / 2)
-						sum += farm[i][j];
+			// 시작점, 종료점은 이제 범위가 줄어들어야 한다.
+			s+=2;
+			e-=2;
+			for (int i = (N/2)+1; i < N; i++) { // 3 4
+				for (int j = s; j <= e; j++) {
+					sum += map[i][j];
 				}
+				s++;
+				e--;
 			}
-			
-			System.out.printf("#%d %d\n", t+1, sum);
-
+			sb.append("#"+t+" "+sum+"\n");
 		}
+		System.out.println(sb);
 	}
 }
