@@ -26,24 +26,23 @@ public class Main {
 			map[x][y] = 1;
 			map[y][x] = 1;
 		}
-		visit[S] = true;
 		dfs(S);
 		System.out.println();
 		Arrays.fill(visit, false);
-		q = new ArrayDeque<Integer>();
-		q.offer(S);
-		visit[S] = true;
 		bfs();
 	}
 	private static void dfs(int n) {
+		visit[n] = true;
 		System.out.print(n + " ");
 		for (int i = 1; i <= N; i++) {
 			if (visit[i] || map[n][i] != 1 || map[i][n] != 1) continue;
-			visit[i] = true;
 			dfs(i);
 		}
 	}
 	private static void bfs() {
+		q = new ArrayDeque<Integer>();
+		q.offer(S);
+		visit[S] = true;
 		while(!q.isEmpty()) {
 			int num = q.poll();
 			System.out.print(num + " ");
