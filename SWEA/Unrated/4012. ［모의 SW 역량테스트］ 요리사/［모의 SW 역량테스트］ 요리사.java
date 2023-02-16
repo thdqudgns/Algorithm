@@ -37,18 +37,11 @@ public class Solution {
 	
 	private static void comb(int cnt, int start) {
 		if (cnt == R) {
-			reverse = new int[R];
-			int idx = 0;
-			Rev:
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < R; j++) {
-					if (input[i] == numbers[j]) continue Rev;
-				}
-				reverse[idx++] = input[i];
+			boolean[] pick = new boolean[N];
+			for (int i = 0; i < R; i++) {
+				pick[numbers[i]] = true;
 			}
-			//System.out.println(Arrays.toString(numbers));
-			//System.out.println(Arrays.toString(reverse));
-			compare(numbers, reverse);
+			compare(pick);
 			return;
 		}
 		for (int i = start; i < N; i++) {
@@ -57,16 +50,24 @@ public class Solution {
 		}
 	}
 
-	private static void compare(int[] num, int[] rev) {
-		int sum1 = 0;
-		int sum2 = 0;
+	private static void compare(boolean[] pick) {
+		int[] tmpT = new int[R];
+		int[] tmpF = new int[R];
+		int idxT = 0;
+		int idxF = 0;
+		for (int i = 0; i < N; i++) {
+			if (pick[i]) tmpT[idxT++] = i;
+			else tmpF[idxF++] = i;
+		}
+		int sumT = 0;
+		int sumF = 0;
 		for (int i = 0; i < R; i++) {
-			for (int j = i+1; j < R; j++) {
-				sum1 += sum[num[i]][num[j]];
-				sum2 += sum[rev[i]][rev[j]];
+			for (int j = i + 1; j < R; j++) {
+				sumT += sum[tmpT[i]][tmpT[j]];
+				sumF += sum[tmpF[i]][tmpF[j]];
 			}
 		}
-		int res = Math.abs(sum1 - sum2);
+		int res = Math.abs(sumT - sumF);
 		min = Math.min(res, min);
 	}
 
@@ -84,13 +85,5 @@ public class Solution {
 				sum[j][i] = sum[i][j];
 			}
 		}
-		/*
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				System.out.print(sum[i][j] + " ");
-			}
-			System.out.println();
-		}
-		*/
 	}
 }
