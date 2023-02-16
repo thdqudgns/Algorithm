@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 public class Main {
 	
 	static int[] s = {2, 3, 5, 7};
+	static int[] two = {1, 3, 7, 9};
 	static int N;
 	static StringBuilder sb = new StringBuilder();
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -19,11 +20,19 @@ public class Main {
 	private static void check(int num, int length) {
 		if (length == N) {
 			sb.append(num).append("\n");
+			return;
 		}
 		
-		for (int i = 0; i <= 9; i++) {
-			int tmp = (num * 10) + i;
-			if (isPrime(tmp)) check(tmp, length + 1);
+		if (length == 1) {
+			for (int i = 0; i < 4; i++) {
+				int tmp = num * 10 + two[i];
+				if (isPrime(tmp)) check(tmp, length + 1);
+			}
+		} else {
+			for (int i = 0; i <= 9; i++) {
+				int tmp = (num * 10) + i;
+				if (isPrime(tmp)) check(tmp, length + 1);
+			}
 		}
 	}
 
