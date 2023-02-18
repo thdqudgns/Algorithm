@@ -12,11 +12,18 @@ public class Main {
 		}
 		sn += "I";
 		int cnt = 0;
-		for (int i = 0; i < M - (N*2); i++) {
+		int i = 0;
+		while (i < M - (N*2)) {
 			if (S.charAt(i) == 'I') {
 				String tmp = S.substring(i, i+(2*N+1));
-				if (tmp.equals(sn)) cnt++;
-			}
+				if (tmp.equals(sn)) {
+					cnt++;
+					i += 2;
+					continue;
+				}
+			} 
+			i += 1;
+			
 		}
 		System.out.println(cnt);
 	}
