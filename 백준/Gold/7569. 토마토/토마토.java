@@ -21,7 +21,7 @@ public class Main {
 		N = Integer.parseInt(st.nextToken());
 		H = Integer.parseInt(st.nextToken());
 		
-		map = new int[H][N][M];
+		map = new int[H][N][M];	// 층 개념이 가장 앞에 와야 한다.
 		dist = new int[H][N][M];
 		q = new ArrayDeque<>();
 		
@@ -42,9 +42,10 @@ public class Main {
 	}
 	
 	/*
-	 * 첫째날 : 기존에 익은 토마토들을 시작점으로, 사방의 익지않은 토마토들을 익힌다. 익은 토마토들은 dist[nx][ny] = 0 + 1 이 된다.
-	 * 둘째날 : 전날에 익은 토마토들을 시작점으로, 사방의 익지않은 토마토들을 익힌다. 익은 토마토들은 dist[nx][ny] = 1 + 1 이 된다.
-	 * 셋째날 : 전날에 익은 토마토들을 시작점으로, 사방의 익지않은 토마토들을 익힌다. 익은 토마토들은 dist[nx][ny] = 2 + 1 이 된다.
+	 * 첫째날 : 기존에 익은 토마토들을 시작점으로, 사방의 익지않은 토마토들을 익힌다. 익은 토마토들은 dist[nh][nx][ny] = 0 + 1 이 된다.
+	 * (익은 토마토 위치의 dist는 0이다.)
+	 * 둘째날 : 전날에 익은 토마토들을 시작점으로, 사방의 익지않은 토마토들을 익힌다. 익은 토마토들은 dist[nh][nx][ny] = 1 + 1 이 된다.
+	 * 셋째날 : 전날에 익은 토마토들을 시작점으로, 사방의 익지않은 토마토들을 익힌다. 익은 토마토들은 dist[nh][nx][ny] = 2 + 1 이 된다.
 	 * 처음에 익은 토마토들의 위치를 일괄 큐에 저장했으므로, 첫날의 토마토들을 모두 확인하고 둘째날로 넘어간다.
 	 * 큐의 특성상 들어온 순서대로 빼내면서 일을 진행하기 때문에 각 dist에는 저장될 수 있는 최솟값이 저절로 저장된다.
 	 * 
@@ -60,7 +61,7 @@ public class Main {
 				int nx = position[1] + dx[dir];
 				int ny = position[2] + dy[dir];
 				if (nh < 0 || nh >= H || nx < 0 || nx >= N || ny < 0 || ny >= M) continue;
-				if (dist[nh][nx][ny] >= 0) continue;	// 익지 않은 토마토가 아니라면 pass
+				if (dist[nh][nx][ny] >= 0) continue;	// 이미 익었다면 pass
 				dist[nh][nx][ny] = dist[position[0]][position[1]][position[2]] + 1;	// 며칠이 지났는지 check한다.
 				q.offer(new int[]{nh, nx, ny});
 			}
@@ -69,10 +70,10 @@ public class Main {
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < M; j++) {
 					if (dist[k][i][j] == -1) {
-						ans = -1;
+						ans = -1;	// 익지 않은 토마토가 있다면 -1
 						return;
 					}
-					ans = Math.max(ans, dist[k][i][j]);
+					ans = Math.max(ans, dist[k][i][j]);	// 토마토가 다 익었다면, 다 익은 날짜를 반환
 				}
 			}
 		}
