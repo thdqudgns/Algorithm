@@ -1,3 +1,5 @@
+//package solve;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -36,6 +38,7 @@ public class Main {
 		int N = Integer.parseInt(br.readLine());
 		List<Test> list = new ArrayList<>();
 		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			String name = st.nextToken();
@@ -46,7 +49,8 @@ public class Main {
 		}
 		Collections.sort(list);
 		for (Test t : list) {
-			System.out.println(t.name);
+			sb.append(t.name).append("\n");
 		}
+		System.out.println(sb);
 	}
 }
