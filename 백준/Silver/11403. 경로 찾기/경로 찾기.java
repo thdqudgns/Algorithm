@@ -10,6 +10,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
 		StringTokenizer st;
 		map = new int[N+1][N+1];
 		result = new int[N+1][N+1];
@@ -26,10 +27,11 @@ public class Main {
 		}
 		for (int i = 1; i <= N; i++) {
 			for (int j = 1; j <= N; j++) {
-				System.out.print(result[i][j] + " ");
+				sb.append(result[i][j] + " ");
 			}
-			System.out.println();
+			sb.append("\n");
 		}
+		System.out.print(sb);
 	}
 	private static void dfs(int i) {
 		for (int j = 1; j <= N; j++) {
