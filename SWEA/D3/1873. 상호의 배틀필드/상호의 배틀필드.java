@@ -5,49 +5,83 @@ import java.util.StringTokenizer;
 
 public class Solution {
 	
-	static int H, W, N;	// 행, 열, 명령어 개수
+	static int H, W, N, T;	// 행, 열, 명령어 개수
 	static int nowR, nowC;	// 탱크의 현재위치
 	static char[][] map;// map
 	static char[] order;// 명령어 배열
 	static char tank;
 	static StringBuilder sb = new StringBuilder();
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// test_case
-		int T = Integer.parseInt(br.readLine());
+		T = Integer.parseInt(br.readLine());
 		for (int t = 1; t <= T; t++) {
-			// map 입력
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			H = Integer.parseInt(st.nextToken());
-			W = Integer.parseInt(st.nextToken());
-			map = new char[H][W];
-			for (int h = 0; h < H; h++) {
-				map[h] = br.readLine().toCharArray();
-				for (int w = 0; w < W; w++) {
-					if (map[h][w] == '<' || map[h][w] == '>' || map[h][w] == '^' || map[h][w] == 'v') {
-						tank = map[h][w];
-						nowR = h;
-						nowC = w;
-					}
-				}
-			}
-			// order 입력
-			N = Integer.parseInt(br.readLine());
-			order = new char[N];
-			order = br.readLine().toCharArray();
-			battle();
-			sb.append(String.format("#%d ", t));
-			for (int h = 0; h < H; h++) {
-				for (int w = 0; w < W; w++) {
-					sb.append(map[h][w]);
-				}
-				sb.append("\n");
-			}
+			input();	// 입력
+			battle();	// 로직 수행
+			output(t);	// 출력
+
 		}
 		System.out.println(sb);
 	}
 
+
+	private static void input() throws IOException {
+		// map 입력
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		H = Integer.parseInt(st.nextToken());
+		W = Integer.parseInt(st.nextToken());
+		map = new char[H][W];
+		for (int h = 0; h < H; h++) {
+			map[h] = br.readLine().toCharArray();
+			for (int w = 0; w < W; w++) {
+				if (map[h][w] == '<' || map[h][w] == '>' || map[h][w] == '^' || map[h][w] == 'v') {
+					tank = map[h][w];
+					nowR = h;
+					nowC = w;
+				}
+			}
+		}
+		// order 입력
+		N = Integer.parseInt(br.readLine());
+		order = new char[N];
+		order = br.readLine().toCharArray();
+	}
+
+	private static void output(int t) {
+		sb.append(String.format("#%d ", t));
+		for (int h = 0; h < H; h++) {
+			for (int w = 0; w < W; w++) {
+				sb.append(map[h][w]);
+			}
+			sb.append("\n");
+		}
+	}
+
+	/**
+		문자	의미	map
+		.	평지(전차가 들어갈 수 있다.)
+		*	벽돌로 만들어진 벽
+		#	강철로 만들어진 벽
+		-	물(전차는 들어갈 수 없다.)
+		^	위쪽을 바라보는 전차(아래는 평지이다.)
+		v	아래쪽을 바라보는 전차(아래는 평지이다.)
+		<	왼쪽을 바라보는 전차(아래는 평지이다.)
+		>	오른쪽을 바라보는 전차(아래는 평지이다.)
+		
+		문자	동작	order
+		U	Up : 전차가 바라보는 방향을 위쪽으로 바꾸고, 한 칸 위의 칸이 평지라면 위 그 칸으로 이동한다.
+		D	Down : 전차가 바라보는 방향을 아래쪽으로 바꾸고, 한 칸 아래의 칸이 평지라면 그 칸으로 이동한다.
+		L	Left : 전차가 바라보는 방향을 왼쪽으로 바꾸고, 한 칸 왼쪽의 칸이 평지라면 그 칸으로 이동한다.
+		R	Right : 전차가 바라보는 방향을 오른쪽으로 바꾸고, 한 칸 오른쪽의 칸이 평지라면 그 칸으로 이동한다.
+		S	Shoot : 전차가 현재 바라보고 있는 방향으로 포탄을 발사한다.
+		
+		nowR, nowC 탱크의 현재위치
+		***....
+		*-..#**
+		#<.****
+		[S, U, R, S, S, S, S, U, S, L, S, R, S, S, S, U, R, R, D, S, R, D, S]
+	 */
 	private static void battle() {
 		// 명령 수행 순서
 		for (int o = 0; o < N; o++) {
