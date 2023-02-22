@@ -1,18 +1,24 @@
 import java.util.Scanner;
-public class Main{
+
+public class Main {
+	static int N, K;
+	static long cnt;
 	public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int k = sc.nextInt();
-        Main m = new Main();
-        System.out.print(m.factorial(n)/m.factorial(n-k)/m.factorial(k));
-    }
-	
-	public int factorial(int a) {
-		int result = 1;
-		for (int i = 2; i <= a; i++) {
-			result *= i;
+		Scanner sc = new Scanner(System.in);
+		N = sc.nextInt();
+		K = sc.nextInt();
+		cnt = 0;
+		
+		comb(0,0);
+		System.out.println(cnt%10007);
+	}
+	private static void comb(int c, int start) {
+		if (c == K) {
+			cnt++;
+			return;
 		}
-		return result;
+		for (int k = start; k < N; k++) {
+			comb(c + 1, k + 1);
+		}
 	}
 }
