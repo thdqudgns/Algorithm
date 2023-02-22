@@ -1,9 +1,5 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
 	static int N, T, cnt;
@@ -26,21 +22,10 @@ public class Main {
 			list.get(x).add(y);
 			list.get(y).add(x);
 		}
-		/*
-		int idx = 0;
-		for(List<Integer> l : list) {
-			System.out.print("idx " + idx++ + ": ");
-			for (int i : l) {
-				System.out.print(i + " ");
-			}
-			System.out.println();
-		}
-		*/
 		dfs(1);
 		System.out.println(cnt-1);	// 1번 컴퓨터 제외
 	}
 	private static void dfs(int n) {
-		if (visit[n]) return;
 		cnt++;
 		visit[n] = true;
 		for (int i = 0; i < list.get(n).size(); i++) {
