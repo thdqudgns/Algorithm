@@ -33,6 +33,7 @@ public class Solution {
 		for (int i = 0; i < N; i++) {
 			if (visit[i]) continue;
 			
+            if (sum + dis(start, customer[i]) > min) return;
 			visit[i] = true;
 			solve(customer[i], sum + dis(start, customer[i]), cnt + 1);
 			visit[i] = false;
