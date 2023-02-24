@@ -40,9 +40,6 @@ public class Main {
 			}
 		}
 		size = cctvs.size(); //cctv의 개수
-		for (CCTV c : cctvs) {
-			//System.out.println(c); // CCTV 확인
-		}
 		dfs(0, map);
 		System.out.println(min);
 	}
@@ -86,31 +83,19 @@ public class Main {
 		switch (num) {
 		case 1:
 			c++;
-			while (c < M && tmpMap[r][c] != '6') {
-				if (tmpMap[r][c] == '0') tmpMap[r][c] = '#';
-				c++;
-			}
+			while (c < M && tmpMap[r][c] != '6') tmpMap[r][c++] = '#';
 			break;
 		case 2:
 			r++;
-			while (r < N && tmpMap[r][c] != '6') {
-				if (tmpMap[r][c] == '0') tmpMap[r][c] = '#';
-				r++;
-			}
+			while (r < N && tmpMap[r][c] != '6') tmpMap[r++][c] = '#';
 			break;
 		case 3:
 			c--;
-			while (c >= 0 && tmpMap[r][c] != '6') {
-				if (tmpMap[r][c] == '0') tmpMap[r][c] = '#';
-				c--;
-			}
+			while (c >= 0 && tmpMap[r][c] != '6') tmpMap[r][c--] = '#';
 			break;
 		case 4:
 			r--;
-			while (r >= 0 && tmpMap[r][c] != '6') {
-				if (tmpMap[r][c] == '0') tmpMap[r][c] = '#';
-				r--;
-			}
+			while (r >= 0 && tmpMap[r][c] != '6') tmpMap[r--][c] = '#';
 			break;
 		}
 		return tmpMap;
@@ -125,26 +110,14 @@ public class Main {
 		case 1:
 			int c1 = c, c2 = c;
 			c1--; c2++;
-			while(c1 >= 0 && tmpMap[r][c1] != '6') {
-				if (tmpMap[r][c1] == '0') tmpMap[r][c1] = '#';
-				c1--;
-			}
-			while (c2 < M && tmpMap[r][c2] != '6') {
-				if (tmpMap[r][c2] == '0') tmpMap[r][c2] = '#';
-				c2++;
-			}
+			while(c1 >= 0 && tmpMap[r][c1] != '6') tmpMap[r][c1--] = '#';
+			while (c2 < M && tmpMap[r][c2] != '6') tmpMap[r][c2++] = '#';
 			break;
 		case 2:
 			int r1 = r, r2 = r;
 			r1--; r2++;
-			while(r1 >= 0 && tmpMap[r1][c] != '6') {
-				if (tmpMap[r1][c] == '0') tmpMap[r1][c] = '#';
-				r1--;
-			}
-			while(r2 < N && tmpMap[r2][c] != '6') {
-				if (tmpMap[r2][c] == '0') tmpMap[r2][c] = '#';
-				r2++;
-			}
+			while(r1 >= 0 && tmpMap[r1][c] != '6') tmpMap[r1--][c] = '#';
+			while(r2 < N && tmpMap[r2][c] != '6') tmpMap[r2++][c] = '#';
 			break;
 		}
 		return tmpMap;
@@ -159,58 +132,32 @@ public class Main {
 		case 1:
 			int r1 = r, c1 = c;
 			r1--; c1++;
-			while (r1 >= 0 && tmpMap[r1][c] != '6') {
-				if (tmpMap[r1][c] == '0') tmpMap[r1][c] = '#';
-				r1--;
-			}
-			while (c1 < M && tmpMap[r][c1] != '6') {
-				if (tmpMap[r][c1] == '0') tmpMap[r][c1] = '#';
-				c1++;
-			}
+			while (r1 >= 0 && tmpMap[r1][c] != '6') tmpMap[r1--][c] = '#';
+			while (c1 < M && tmpMap[r][c1] != '6') tmpMap[r][c1++] = '#';
 			break;
 		case 2:
 			int r2 = r, c2 = c;
 			r2++; c2++;
-			while (r2 < N && tmpMap[r2][c] != '6') {
-				if (tmpMap[r2][c] == '0') tmpMap[r2][c] = '#';
-				r2++;
-			}
-			while (c2 < M && tmpMap[r][c2] != '6') {
-				if (tmpMap[r][c2] == '0') tmpMap[r][c2] = '#';
-				c2++;
-			}
+			while (r2 < N && tmpMap[r2][c] != '6') tmpMap[r2++][c] = '#';
+			while (c2 < M && tmpMap[r][c2] != '6') tmpMap[r][c2++] = '#';
 			break;
 		case 3:
 			int r3 = r, c3 = c;
 			r3++; c3--;
-			while (r3 < N && tmpMap[r3][c] != '6') {
-				if (tmpMap[r3][c] == '0') tmpMap[r3][c] = '#';
-				r3++;
-			}
-			while (c3 >= 0 && tmpMap[r][c3] != '6') {
-				if (tmpMap[r][c3] == '0') tmpMap[r][c3] = '#';
-				c3--;
-			}
+			while (r3 < N && tmpMap[r3][c] != '6') tmpMap[r3++][c] = '#';
+			while (c3 >= 0 && tmpMap[r][c3] != '6') tmpMap[r][c3--] = '#';
 			break;
 		case 4:
 			int r4 = r, c4 = c;
 			r4--; c4--;
-			while (r4 >= 0 && tmpMap[r4][c] != '6') {
-				if (tmpMap[r4][c] == '0') tmpMap[r4][c] = '#';
-				r4--;
-			}
-			while (c4 >= 0 && tmpMap[r][c4] != '6') {
-				if (tmpMap[r][c4] == '0') tmpMap[r][c4] = '#';
-				c4--;
-			}
+			while (r4 >= 0 && tmpMap[r4][c] != '6') tmpMap[r4--][c] = '#';
+			while (c4 >= 0 && tmpMap[r][c4] != '6') tmpMap[r][c4--] = '#';
 			break;
 		}
 		return tmpMap;
 	}
 	// 1: ㅗ, 2: ㅏ, 3: ㅜ, 4: ㅓ
 	private static char[][] change4(int idx, int num, char[][] map) {
-		int r = cctvs.get(idx).r;
-		int c = cctvs.get(idx).c;
 		char[][] tmpMap = new char[N][M];
 		for (int i = 0; i < N; i++) for (int j = 0; j < M; j++) tmpMap[i][j] = map[i][j];
 		switch (num) {
@@ -241,22 +188,10 @@ public class Main {
 		for (int i = 0; i < N; i++) for (int j = 0; j < M; j++) tmpMap[i][j] = map[i][j];
 		int r1 = r, r2 = r, c1 = c, c2 = c;
 		r1--; r2++; c1--; c2++;
-		while(r1 >= 0 && tmpMap[r1][c] != '6') {
-			if (tmpMap[r1][c] == '0') tmpMap[r1][c] = '#';
-			r1--;
-		}
-		while(r2 < N && tmpMap[r2][c] != '6') {
-			if (tmpMap[r2][c] == '0') tmpMap[r2][c] = '#';
-			r2++;
-		}
-		while(c1 >= 0 && tmpMap[r][c1] != '6') {
-			if (tmpMap[r][c1] == '0') tmpMap[r][c1] = '#';
-			c1--;
-		}
-		while(c2 < M && tmpMap[r][c2] != '6') {
-			if (tmpMap[r][c2] == '0') tmpMap[r][c2] = '#';
-			c2++;
-		}
+		while(r1 >= 0 && tmpMap[r1][c] != '6') tmpMap[r1--][c] = '#';
+		while(r2 < N && tmpMap[r2][c] != '6') tmpMap[r2++][c] = '#';
+		while(c1 >= 0 && tmpMap[r][c1] != '6') tmpMap[r][c1--] = '#';
+		while(c2 < M && tmpMap[r][c2] != '6') tmpMap[r][c2++] = '#';
 		return tmpMap;
 	}
 }
