@@ -1,9 +1,10 @@
 import java.io.*;
+
 public class Main {
     public static void main(String[] args) throws IOException {
         String[][] arr;
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int N = Integer.parseInt(bf.readLine());
         arr = new String[N][N];
         for (int i = 0; i < arr.length; i++) {
@@ -15,11 +16,11 @@ public class Main {
 
         for (String[] strings : arr) {
             for (String string : strings) {
-                sb.append(string);
+                bw.write(string);
             }
-            sb.append("\n");
+            bw.write("\n");
         }
-        System.out.print(sb);
+        bw.close();
     }
 
     public static void star(String[][] arr, int x, int y, int N) {
