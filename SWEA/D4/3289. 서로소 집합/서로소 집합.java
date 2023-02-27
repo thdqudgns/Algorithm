@@ -3,20 +3,19 @@ import java.util.*;
 
 public class Solution {
 	static int N, M;
-	static String res;
 	static int[] arr;
+	static StringBuilder sb = new StringBuilder();
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int T = Integer.parseInt(br.readLine()), t = 0;
 		StringTokenizer st;
-		StringBuilder sb = new StringBuilder();
 		while (t++ < T) {
 			st = new StringTokenizer(br.readLine());
 			N = Integer.parseInt(st.nextToken());
 			M = Integer.parseInt(st.nextToken());
-			res = "";
 			arr = new int[N+1];
 			setArr();
+			sb.append("#" + t + " ");
 			for (int i = 0; i < M; i++) {	// M번 반복함
 				st = new StringTokenizer(br.readLine());
 				int order = Integer.parseInt(st.nextToken());
@@ -24,12 +23,12 @@ public class Solution {
 				int b = Integer.parseInt(st.nextToken());
 				solve(order, a, b);
 			}
-			sb.append("#" + t + " " + res + "\n");
+			sb.append("\n");
 		}
 		System.out.print(sb);
 	}
 	private static void setArr() {
-		for (int i = 0; i < N+1; i++) {
+		for (int i = 1; i < N+1; i++) {
 			arr[i] = i;
 		}
 	}
@@ -37,8 +36,8 @@ public class Solution {
 		if (order == 0) {	// b를 a에 합치기
 			union(a, b);
 		} else { // order == 1 -> 같은 집합에 있는지 확인하기
-			if (check(a, b)) res += "1";
-			else res += "0";
+			if (check(a, b)) sb.append("1");
+			else sb.append("0");
 		}
 	}
 	private static void union(int a, int b) {
