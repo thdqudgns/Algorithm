@@ -1,5 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 	public static void main(String[] args) {
@@ -8,7 +7,7 @@ public class Main {
 		int K = sc.nextInt();
 		StringBuilder sb = new StringBuilder();
 		sb.append("<");
-		ArrayDeque<Integer> dq = new ArrayDeque<>();
+		Queue<Integer> dq = new ArrayDeque<>();
 		for (int i = 1; i <= N; i++) dq.offer(i);
 		int cnt = 1;
 		while (!dq.isEmpty()) {
