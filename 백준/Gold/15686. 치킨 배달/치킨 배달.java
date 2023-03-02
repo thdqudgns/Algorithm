@@ -1,10 +1,5 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
 	static int N, M, C, H;
@@ -27,24 +22,9 @@ public class Main {
 				if(map[i][j] == 1) house.add(new int[] {i, j}); 
 			}
 		}
-		/*
-		for (int i = 0; i < chicken.size(); i++) {
-			System.out.println(chicken.get(i)[0] + " " + chicken.get(i)[1]);
-		}
-		*/
 		C = chicken.size();
-		//System.out.println("C: " + C);
-		
-		//System.out.println();
-		/*
-		for (int i = 0; i < house.size(); i++) {
-			System.out.println(house.get(i)[0] + " " + house.get(i)[1]);
-		}
-		*/
 		H = house.size();
-		//System.out.println("H: " + H);
 		pickChicken = new int[C][2];
-		
 		comb(0, 0);
 		
 		System.out.println(min);
@@ -52,11 +32,6 @@ public class Main {
 	
 	private static void comb(int cnt, int start) {
 		if (cnt == M) {
-			/*
-			for (int i = 0; i < M; i++) {
-				System.out.println(Arrays.toString(pickChicken[i]));
-			}
-			*/
 			// 거리측정하기
 			int len = 0;
 			for (int x = 0; x < H; x++) { // 집마다, 치킨집까지의 거리 계산
