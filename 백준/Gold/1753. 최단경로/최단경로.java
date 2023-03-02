@@ -1,5 +1,3 @@
-//package solve;
-
 import java.util.*;
 import java.io.*;
 
@@ -54,28 +52,25 @@ public class Main {
 		int min, current, cnt = 0;
 		while (!pq.isEmpty()) {
 			Vertex minVt = pq.poll();
-			//if (visited[minVt.num]) continue;
+			if (visited[minVt.num]) continue;
+
 			current = minVt.num;
 			min = minVt.cost;
-			
 			visited[current] = true;
-			//if (++cnt == V) break;
 			
-			for (int i = 0; i < data[current].size(); i++) {
-				if (!visited[data[current].get(i).num] 
-						&& distance[data[current].get(i).num] > min + data[current].get(i).cost) {
-					distance[data[current].get(i).num] = min + data[current].get(i).cost;
-					pq.offer(new Vertex(data[current].get(i).num, distance[data[current].get(i).num]));
+			for (Vertex v : data[current]) {
+				if (!visited[v.num]
+						&& distance[v.num] > min + v.cost) {
+					distance[v.num] = min + v.cost;
+					pq.offer(new Vertex(v.num, distance[v.num]));
 				}
 			}
 		}
+		
 		for (int i = 0; i < V; i++) {
-			if (distance[i] != INF) {
-				sb.append(distance[i] + "\n");
-			} else {
-				sb.append("INF\n");
-			}
+			sb.append(distance[i] != INF ? distance[i] + "\n" : "INF\n");
 		}
+		
 		System.out.print(sb);
 	}
 }
