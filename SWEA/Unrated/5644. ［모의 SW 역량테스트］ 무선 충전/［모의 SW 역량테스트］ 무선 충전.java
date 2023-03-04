@@ -99,7 +99,7 @@ public class Solution {
 				// 배터리가 다르다면 각각 더하고, 다를 때의 최댓값을 max에 저장할거다.
 				if (a != b) totalSum = aSum + bSum;
 				// 배터리가 같다면? -> 더 이득보는 쪽을 더한다.
-				else totalSum = Math.max(aSum, bSum);
+				else totalSum = bSum;
 				// 그 후에 max에 저장
 				max = Math.max(totalSum, max);
 			}
