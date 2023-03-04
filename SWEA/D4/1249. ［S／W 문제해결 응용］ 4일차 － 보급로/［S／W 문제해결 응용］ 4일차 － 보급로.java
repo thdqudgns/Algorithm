@@ -1,55 +1,67 @@
-import java.io.*;
 import java.util.*;
 
 public class Solution {
-	static int N, ans;
-	static int[][] map, dis;
+	static class Vertex implements Comparable<Vertex> {
+		int r, c, cost;
+		public Vertex(int r, int c, int cost) {
+			this.r = r;
+			this.c = c;
+			this.cost = cost;
+		}
+		@Override
+		public int compareTo(Vertex o) {
+			return Integer.compare(this.cost, o.cost);
+		}
+	}
+	static int V;
+	static PriorityQueue<Vertex> pq;
+	static int[][] minDist; // == minCost
+	static int[][] map;
+	static boolean[][] visited;
 	static int[] dr = {-1, 0, 1, 0};
 	static int[] dc = {0, 1, 0, -1};
-	static Queue<int[]> q;
-	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = Integer.parseInt(br.readLine()), t = 0;
-		StringBuilder sb = new StringBuilder();
-		
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int T = Integer.parseInt(sc.nextLine());
+		int t = 0;
 		while (t++ < T) {
-			N = Integer.parseInt(br.readLine());
-			map = new int[N][N];
-			dis = new int[N][N];
-			for (int i = 0; i < N; i++) {
-				String s = br.readLine();
-				for (int j = 0; j < N; j++) {
+			V = Integer.parseInt(sc.nextLine());
+			minDist = new int[V][V];
+			map = new int[V][V];
+			visited = new boolean[V][V];
+			pq = new PriorityQueue<>();
+			
+			for (int i = 0; i < V; i++) {
+				String s = sc.nextLine();
+				for (int j = 0; j < V; j++) {
 					map[i][j] = s.charAt(j) - '0';
 				}
-			}
-			for (int i = 0; i < N; i++) {
-				Arrays.fill(dis[i], Integer.MAX_VALUE);
+				Arrays.fill(minDist[i], Integer.MAX_VALUE);
 			}
 			
-			// BFS 로 진행하면서, 해당 (r,c) 까지 갈 수 있는 최소값을 저장한다.
-			q = new ArrayDeque<>();
-			q.offer(new int[] {0, 0});
-			dis[0][0] = 0;
-			bfs();
-			sb.append(String.format("#%d %d\n", t, dis[N-1][N-1]));
-		}
-		System.out.print(sb);
-	}
-	private static void bfs() {
-		while (!q.isEmpty()) {
-			int[] tmp = q.poll();
-			int r = tmp[0];
-			int c = tmp[1];
-			for (int d = 0; d < 4; d++) {
-				int nr = r + dr[d];
-				int nc = c + dc[d];
-				if (nr<0 || nc<0 || nr>=N || nc>=N) continue;
-				int num = map[nr][nc] + dis[r][c];
-				if (dis[nr][nc] > num) {
-					dis[nr][nc] = num;
-					q.offer(new int[] {nr, nc});
+			minDist[0][0] = 0;
+			pq.offer(new Vertex(0, 0, 0));
+			
+			while(!pq.isEmpty()) {
+				Vertex v = pq.poll();
+				if (visited[v.r][v.c]) continue;
+				
+				visited[v.r][v.c] = true;
+				if (v.r == V-1 && v.c == V-1) break;
+				
+				// 현재 위치를 기준으로 사방탐색하면서, 갱신시킬 게 있는지 확인
+				for (int d = 0; d < 4; d++) {
+					int nr = v.r + dr[d];
+					int nc = v.c + dc[d];
+					if (nr<0 || nc<0 || nr>=V || nc>=V) continue;
+					if (minDist[nr][nc] > v.cost + map[nr][nc]) {
+						minDist[nr][nc] = v.cost + map[nr][nc];
+						pq.offer(new Vertex(nr, nc, minDist[nr][nc]));
+					}
 				}
 			}
+			System.out.printf("#%d %d\n", t, minDist[V-1][V-1]);
 		}
 	}
 }
