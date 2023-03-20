@@ -3,10 +3,8 @@ class Solution {
         String answer = "";
         String[] arr = {"1", "2", "4"};
         while(n > 0) {
-            int q = (n - 1)/3; // 몫
-            int r = (n - 1)%3; // 나머지
-            answer = String.valueOf(arr[r]) + answer;
-            n = q;
+            answer = arr[(n - 1) % 3] + answer;
+            n = (n - 1) / 3;
         }
         return answer;
     }
