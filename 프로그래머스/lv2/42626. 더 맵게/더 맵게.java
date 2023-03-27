@@ -19,19 +19,21 @@ class Solution {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
         int answer = 0;
         
-        // 배열 -> 우선순위큐 (최악 백만)
+        // 배열 -> 우선순위큐 (최악 100만)
         for (int i : scoville) {
             pq.offer(i);
         }
         
+        // (100만 * 20 * 2)
         while (pq.peek() < K && pq.size() >= 2) {
             int a = pq.poll();
             int b = pq.poll();
-            int tmp = a + b * 2;
-            pq.offer(tmp);
+            int tmp = a + b * 2; // (2)
+            pq.offer(tmp); // (20)
             answer++;
         }
         
+        // pq에 값이 하나 남았는데, K보다 작다면 K 이상으로 만들 수 없는 경우다.
         if (pq.peek() < K) answer = -1;
         return answer;
     }
