@@ -28,8 +28,8 @@ class Solution {
         while (pq.peek() < K && pq.size() >= 2) {
             int a = pq.poll();
             int b = pq.poll();
-            int tmp = a + b * 2; // (2)
-            pq.offer(tmp); // (20)
+            int tmp = a + b * 2; // (2) - poll하고, 더하는 연산횟수를 대략 2로 
+            pq.offer(tmp); // (20) - 가장 작은값을 연산하는 것이므로 앞부분에서 정렬이 될 것이기에, 실제 20번까지는 아니다.
             answer++;
         }
         
