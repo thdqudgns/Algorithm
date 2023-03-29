@@ -5,6 +5,7 @@
               더 가까운 손이 움직인다. 만일 거리가 같다면 hand에 따라 정한다.
 */
 import java.util.*;
+import static java.lang.Math.*;
 class Solution {
     
     static Map<Character, int[]> pad; // 숫자를 key로, 위치를 value로
@@ -12,8 +13,6 @@ class Solution {
     static StringBuffer answer = new StringBuffer(); // 정답 반환
     static int[] LThumbs = {3, 0};
     static int[] RThumbs = {3, 2};
-    static int[] dr = {-1, 0, 1, 0};
-    static int[] dc = {0, 1, 0, -1};
     
     static void makePad() {
         pad = new HashMap<>();
@@ -27,10 +26,12 @@ class Solution {
         pad.put('*', new int[]{3, 0});
         pad.put('0', new int[]{3, 1});
         pad.put('#', new int[]{3, 2});
-        //for(int[] out : pad.values()) System.out.print(Arrays.toString(out) + " ");
         
         thumbsPosition = new int[4][3];
-        
+    }
+    
+    static int getLength(int[] a, int[] b) {
+        return abs(a[0] - b[0]) + abs(a[1] - b[1]);
     }
     
     public String solution(int[] numbers, String hand) {
@@ -41,26 +42,28 @@ class Solution {
         for(int n : numbers) {
             char num = (char)('0' + n);
             int[] get = pad.get(num); // 패드번호의 좌표
-            System.out.print(Arrays.toString(get) + " ");
+
             if (get[1] == 0) {
                 answer.append("L");
-                LThumbs = get; // 왼쪽엄지 좌표 <- 패드번호 좌표
+                LThumbs = get; // 사용한 손의 좌표 옮기기
             } else if (get[1] == 2) {
                 answer.append("R");
-                RThumbs = get; // 오른쪽엄지 좌표 <- 패드번호 좌표
+                RThumbs = get; // 사용한 손의 좌표 옮기기
             } else {
-                int lenL = Math.abs(get[0] - LThumbs[0]) + Math.abs(get[1] - LThumbs[1]);
-                int lenR = Math.abs(get[0] - RThumbs[0]) + Math.abs(get[1] - RThumbs[1]);
+                int lenL = getLength(get, LThumbs);
+                int lenR = getLength(get, RThumbs);
                 if (lenL == lenR) { // 거리가 같으면 손잡이대로
                     answer.append(hand);
-                    if (hand.equals("L")) LThumbs = get;
-                    else RThumbs = get;
-                } else if (lenL < lenR) {
+                    if (hand.equals("L")) 
+                        LThumbs = get; // 사용한 손의 좌표 옮기기
+                    else 
+                        RThumbs = get; // 사용한 손의 좌표 옮기기
+                } else if (lenL < lenR) { // 거리가 더 짧은 손 사용
                     answer.append("L");
-                    LThumbs = get;
+                    LThumbs = get; // 사용한 손의 좌표 옮기기
                 } else {
                     answer.append("R");
-                    RThumbs = get;
+                    RThumbs = get; // 사용한 손의 좌표 옮기기
                 }
             }
         }
