@@ -9,7 +9,6 @@ import static java.lang.Math.*;
 class Solution {
     
     static Map<Character, int[]> pad; // 숫자를 key로, 위치를 value로
-    static int[][] thumbsPosition; // 엄지와 검지의 위치 저장할 배열
     static StringBuffer answer = new StringBuffer(); // 정답 반환
     static int[] LThumbs = {3, 0};
     static int[] RThumbs = {3, 2};
@@ -23,11 +22,7 @@ class Solution {
                 pad.put(num, new int[]{r, c});
             }
         }
-        pad.put('*', new int[]{3, 0});
         pad.put('0', new int[]{3, 1});
-        pad.put('#', new int[]{3, 2});
-        
-        thumbsPosition = new int[4][3];
     }
     
     static int getLength(int[] a, int[] b) {
