@@ -9,7 +9,7 @@ class Solution {
         for(int i = 0; i < speeds.length; i++) {
             q.offer(new int[]{progresses[i], speeds[i]});
         }
-        
+         
         while(!q.isEmpty()) {
             // 큐를 순회하면서 speed를 더한 값을 새로 저장한다. 
             for(int i = 0; i < q.size(); i++) {
