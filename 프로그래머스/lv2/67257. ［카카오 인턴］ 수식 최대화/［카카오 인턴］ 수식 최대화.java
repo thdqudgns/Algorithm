@@ -55,6 +55,10 @@ class Solution {
         return answer;
     }
     
+    /**
+        순열로 연산자의 우선순위의 모든 경우의 수를 따진다.
+        우선순위를 구했으면 그것에 따라 계산한다.
+     */
     static void perm(int cnt) {
         if (cnt == N) {
             //System.out.println(Arrays.toString(priority));
@@ -72,6 +76,12 @@ class Solution {
         }
     }
     
+    /**
+        연산자의 우선순위 priority에 따라
+        copyInput에 저장되어있는 수를 계산
+        calByOpt(인덱스, 연산자)
+        그 후 최댓값 갱신
+     */
     static void calculation(String[] priority) {
         for(String s : priority) {
             while (copyOptIdx.contains(s)) {
@@ -84,6 +94,11 @@ class Solution {
         answer = Math.max(answer, Math.abs(copyInput.get(0)));
     }
     
+    /**
+        계산한 값이 점점 앞으로 쌓이는 구조
+        copyInput의 idx에 위치한 값과 idx+1에 위치한 값을 연산하고
+        idx+1에 위치한 값은 삭제하고, 연산된 값을 idx 위치에 대체
+     */
     static void calByOpt(int idx, String opt) {
         long tmp = 0L;
         long a = copyInput.get(idx);
