@@ -1,69 +1,111 @@
+/**
+    연산문자는 3개만 주어진다. -> 우선순위를 정하는 경우의 수는 단 6가지
+    완전탐색으로 해결하면 된다.
+    1. 어떤 연산자가 있는지 확인하기
+    2. 해당 연산자들의 우선순위를 매기기
+    3. 계산하고, 절댓값 구하기
+    4. 최댓값 반환
+ */
+import java.util.*;
+import java.lang.*;
 
-
-import java.util.ArrayList;
-import java.util.List;
-/*
-*  접근법
-*  1. 연산자는 *, +, - => 가능한 조합 수 3! = 6가지
-*  2. 입력은 최대 길이 100 문자열, 알 수 없는 테스트 케이스 수
-*  3. 6가지에 대해 전부 완전탐색해봐도 될 것 같다 ?
-*/
 class Solution {
-    static char[][] oper = {{'*', '+', '-'}, {'*', '-', '+'}, {'+', '*', '-'}, 
-                         {'+', '-', '*'}, {'-', '*', '+'}, {'-', '+', '*'}};
+    static int N;
+    static String[] priority;
+    static boolean[] used;
+    static long answer;
     
-    public long solution(String expression) {
-        long answer = 0;
-        
-        // 1. 가능한 6가지 우선순위를 전부 탐색
-        long v;
-        for (char[] op : oper) {
-            v = check(op, 0, expression);
-            answer = Math.max(Math.abs(v), answer);
+    static List<String> opt, optIdx, copyOptIdx;
+    static List<Long> input, copyInput;
+    
+    public long solution(String exp) {
+        String[] tmpInput = exp.split("\\+|-|\\*");
+        input = new ArrayList<>();
+        for (String s : tmpInput) {
+            input.add(Long.parseLong(s));
         }
         
-        System.out.println(answer);
+        //System.out.print("input : " + input);
+        
+        optIdx = new ArrayList<>();
+        for (int i = 0; i < exp.length(); i++) {
+            if (exp.charAt(i) == '+') optIdx.add("+");
+            if (exp.charAt(i) == '-') optIdx.add("-");
+            if (exp.charAt(i) == '*') optIdx.add("*");   
+        }
+        //System.out.println(", optIdx : " + optIdx);
+        opt = new ArrayList<>();
+        if (exp.contains("+")) opt.add("+");
+        if (exp.contains("-")) opt.add("-");
+        if (exp.contains("*")) opt.add("*");
+        
+        N = opt.size();
+        
+        priority = new String[N];
+        used = new boolean[N];
+        
+        perm(0);
+        
+        //System.out.print(opt);
+        
         return answer;
     }
     
-    static long check(char[] op, int N, String exp) {
-        List<Long> std = new ArrayList<>();
-        if(N == 2) {
-            for (String tmp : exp.split("\\" + op[2])) {
-                std.add(Long.parseLong(tmp));
-            }
-
-            return eval(op[2], std);
+    /**
+        순열로 연산자의 우선순위의 모든 경우의 수를 따진다.
+        우선순위를 구했으면 그것에 따라 계산한다.
+     */
+    static void perm(int cnt) {
+        if (cnt == N) {
+            //System.out.println(Arrays.toString(priority));
+            copyInput = new ArrayList<>(input);
+            copyOptIdx = new ArrayList<>(optIdx);
+            calculation(priority);
+            return;
         }
-
-        long res;
-        if (op[N] == '*') {
-            for (String tmp : exp.split("\\*")) std.add(check(op, N+1, tmp));
-            res = eval('*', std);
-        } else if (op[N] == '+') {
-            for (String tmp : exp.split("\\+")) std.add(check(op, N+1, tmp));
-            res = eval('+', std);
-        } else {
-            for (String tmp : exp.split("\\-")) std.add(check(op, N+1, tmp));
-            res = eval('-', std);
+        for (int i = 0; i < N; i++) {
+            if (used[i]) continue;
+            used[i] = true;
+            priority[cnt] = opt.get(i);
+            perm(cnt+1);
+            used[i] = false;
         }
-
-        return res;
     }
     
-    // eval 처럼 사용해보자 ..
-    static long eval(char c, List<Long> exp) {
-        long res = exp.get(0);
-        int size = exp.size();
-        
-        if (c == '*') {
-            for (int i = 1; i < size; i++) res *= exp.get(i);
-        } else if (c == '+') {
-            for (int i = 1; i < size; i++) res += exp.get(i);
-        } else {
-            for (int i = 1; i < size; i++) res -= exp.get(i);
+    /**
+        연산자의 우선순위 priority에 따라
+        copyInput에 저장되어있는 수를 계산
+        calByOpt(인덱스, 연산자)
+        그 후 최댓값 갱신
+     */
+    static void calculation(String[] priority) {
+        for(String s : priority) {
+            while (copyOptIdx.contains(s)) {
+                int idx = copyOptIdx.indexOf(s);
+                calByOpt(idx, s);
+                //System.out.print("input : " + copyInput);
+                //System.out.println(", optIdx : " + copyOptIdx);
+            }
         }
-
-        return res;
+        answer = Math.max(answer, Math.abs(copyInput.get(0)));
+    }
+    
+    /**
+        계산한 값이 점점 앞으로 쌓이는 구조
+        copyInput의 idx에 위치한 값과 idx+1에 위치한 값을 연산하고
+        idx+1에 위치한 값은 삭제하고, 연산된 값을 idx 위치에 대체
+     */
+    static void calByOpt(int idx, String opt) {
+        long tmp = 0L;
+        long a = copyInput.get(idx);
+        long b = copyInput.get(idx+1);
+        
+        if (opt.equals("+")) tmp = a + b;
+        else if (opt.equals("-")) tmp = a - b;
+        else tmp = a * b;
+        
+        copyOptIdx.remove(idx);
+        copyInput.remove(idx+1);
+        copyInput.set(idx, tmp);
     }
 }
