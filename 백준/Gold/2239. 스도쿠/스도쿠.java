@@ -45,7 +45,7 @@ public class Main {
 			}
 			map[i][j] = num;
 			solve(idx+1);
-			if(flag) return;
+			if(flag) return; //★★★★★
 			map[i][j] = 0;
 		}
 			
