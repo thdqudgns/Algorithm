@@ -1,50 +1,41 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
-// https://st-lab.tistory.com/133
 /**
- * 6으로 나눠지는 경우는 3으로 나누는 경우와 2로 나누는 경우 
- * 1을 빼는 경우 모두 재귀호출 하여 3가지 경우 중 최솟값으로 DP를 갱신해야 하고
- * 
- * 3으로만 나눠지는 경우는 3으로 나누는 경우와 1을 빼는 경우를 재귀호출 
- * 
- * 2로만 나눠지는 경우는 2로 나누는 경우와 1을 빼는 경우의 수를 재귀호출 
- * 
- * 그 외에는 1을 빼는 경우만 재귀호출을 해주면 된다.
- * 
- * 그리고 각 부분에 이전 재귀호출 중 최솟값에 1을 더한 값이 현재 N에 대한 최소연산 횟수가 된다.
+ * 어떤 수가 1이 되는 최소횟수는 정해져있다. -> 순수함수
+ * 순수함수 -> DP의 메모이제이션을 사용하면 된다.
+ * -> 규칙을 찾아보자
+ * @author Hun
+ *
  */
 public class Main {
-	static Integer[] dp;
+	static int[] dp = new int[1_000_001];
+	static final int INF = Integer.MAX_VALUE;
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
-		dp = new Integer[N+1];
-		dp[0] = dp[1] = 0;
 		
-		System.out.println(recur(N));
+		Arrays.fill(dp, INF);
+		
+		dp[0] = 0;
+		dp[1] = 0; // if (X <= 1) return dp[X];
+		solve(N);
+		
+		System.out.println(dp[N]);
 	}
-	static int recur(int N) {
-		 
-		if (dp[N] == null) {
-			// 6으로 나눠지는 경우 
-			if (N % 6 == 0) {
-				dp[N] = Math.min(recur(N - 1), Math.min(recur(N / 3), recur(N / 2))) + 1;
-			}
-			// 3으로만 나눠지는 경우 
-			else if (N % 3 == 0) {
-				dp[N] = Math.min(recur(N / 3), recur(N - 1)) + 1;
-			}
-			// 2로만 나눠지는 경우 
-			else if (N % 2 == 0) {
-				dp[N] = Math.min(recur(N / 2), recur(N - 1)) + 1;
-			}
-			// 2와 3으로 나누어지지 않는 경우
-			else {
-				dp[N] = recur(N - 1) + 1;
-			}
+	private static int solve(int X) {
+		if (dp[X] != INF) return dp[X];
+		if (X % 6 == 0) {
+			dp[X] = Math.min(dp[X], Math.min(solve(X/3), Math.min(solve(X/2), solve(X-1))) + 1);
+		} else if (X % 3 == 0) {
+			dp[X] = Math.min(dp[X], Math.min(solve(X/3), solve(X-1)) + 1);
+		} else if (X % 2 == 0) {
+			dp[X] = Math.min(dp[X], Math.min(solve(X/2), solve(X-1)) + 1);
+		} else {
+			dp[X] = Math.min(dp[X], solve(X-1) + 1);
 		}
-		return dp[N];
+		return dp[X];
 	}
 }
