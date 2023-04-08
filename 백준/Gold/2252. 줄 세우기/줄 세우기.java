@@ -58,15 +58,12 @@ public class Main {
 			
 			for (int i = connect[out].size()-1; i >=0 ; i--) {
 				indegree[connect[out].get(i)]--;
-				connect[out].remove(i);
-			}
-			
-			// 진입차수가 0인 정점을 큐에 넣기
-			for (int i = 1; i < N+1; i++) {
-				if (indegree[i] == 0) {
-					q.offer(i);
-					indegree[i] = -1; // 넣었으면 -1로
+				// 진입차수가 0인 정점을 큐에 넣기
+				if(indegree[connect[out].get(i)] == 0) {
+					q.offer(connect[out].get(i));
+					indegree[connect[out].get(i)] = -1; // 넣었으면 -1로
 				}
+				connect[out].remove(i);
 			}
 		}
 		
