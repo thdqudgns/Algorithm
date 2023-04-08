@@ -57,11 +57,12 @@ public class Main {
 			answer.add(out);
 			
 			for (int i = connect[out].size()-1; i >=0 ; i--) {
-				indegree[connect[out].get(i)]--;
+				int num = connect[out].get(i);
+				indegree[num]--;
 				// 진입차수가 0인 정점을 큐에 넣기
-				if(indegree[connect[out].get(i)] == 0) {
-					q.offer(connect[out].get(i));
-					indegree[connect[out].get(i)] = -1; // 넣었으면 -1로
+				if(indegree[num] == 0) {
+					q.offer(num);
+					indegree[num] = -1; // 넣었으면 -1로
 				}
 				connect[out].remove(i);
 			}
