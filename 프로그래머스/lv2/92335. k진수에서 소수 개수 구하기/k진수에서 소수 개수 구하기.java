@@ -1,7 +1,12 @@
 /**
     1. n을 k진수로 바꾼다.
-    2. 100만을 2진수로 바꾸어도 2^21승 정도다.
-    그럼 21개의 bit가 사용될 수 있다는 건데, 10^21은 1만경이다...
+    2. 100만을 2진수로 바꾸어도 2^20승 정도다.
+    그럼 20개의 bit가 사용될 수 있다는 건데, 10^20은 1천경이다...
+    long으로 하면 되려나?
+    
+    10진수 -> N진수
+    Integer.toString(10진수, N); 을 사용해 변환 가능하다
+    대박박박박박
  */
 import java.util.*;
 import java.math.BigInteger;
@@ -12,7 +17,7 @@ class Solution {
         for (String num : res) {
             prime(num);
         }
-        //System.out.println(Arrays.toString(res));
+
         return cnt;
     }
     
@@ -26,12 +31,12 @@ class Solution {
 	}
 
 	public static String change(int n, int k) {
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         while(n != 0) {
             int r = n % k;
-            ans = String.valueOf(r) + ans;
+            ans.append(r);
             n /= k;
         }
-        return ans;
+        return ans.reverse().toString();
     }
 }
