@@ -3,13 +3,11 @@ class Solution {
 	static int[] dr = {-1, 0, 1, 0};
 	static int[] dc = {0, 1, 0, -1};
 	static int[][] map;
-	static boolean[][] visited;
 	static int er, ec, ans = Integer.MAX_VALUE;
 	
 	public static int solution(int[][] rectangle, int characterX, int characterY, int itemX, int itemY) {
         // 좌표를 두배로 늘리기
 		map = new int[101][101];
-		visited = new boolean[101][101];
         
         /*
          *  행이 Y고, 열이 X다.
@@ -27,13 +25,6 @@ class Solution {
 				}
         	}
         }
-        
-		// for (int i = 0; i < 101; i++) {
-		// 	for (int j = 0; j < 101; j++) {
-		// 		System.out.print(map[i][j]);
-		// 	}
-		// 	System.out.println();
-		// }
         
         int r = characterY*2; 
         int c = characterX*2; 
