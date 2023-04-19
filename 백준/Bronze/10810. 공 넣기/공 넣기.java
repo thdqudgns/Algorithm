@@ -14,8 +14,10 @@ public class Main {
 				arr[idx] = k;
 			}
 		}
+		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i < N+1; i++) {
-			System.out.print(arr[i] + " ");
+			sb.append(arr[i] + " ");
 		}
+		System.out.print(sb);
 	}
 }
